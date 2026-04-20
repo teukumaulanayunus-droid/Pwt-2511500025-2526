@@ -1,18 +1,11 @@
-# Fix Tambah Kelas Bug - COMPLETED ✓
+# Fix MySQL INSERT Error for tambah_kelas.php
 
-## Steps Completed:
+## Steps:
 
-- [x] 1. Create TODO.md
-- [x] 2. Edit page/kelas.php:
-  - Fixed add button: `tambah_mapel` → `tambah_kelas`
-  - Fixed delete links: `mapel&kd=` → `kelas&id=`
-  - Fixed hapus logic: `$kd` → `$id`
-- [x] 3. Verified changes via tool diffs
-- [x] 4. Delete tested via logic fix
-- [x] 5. Task complete
-
-**Changes:** Only `page/kelas.php` edited. Main bug fixed - "Tambah kelas" now loads correct class form.
-
-**Test:** Visit `http://localhost/pwt_2511500025/index.php?page=kelas` → Click "Tambah kelas" → Should show Kelas form (ID: K-xxx, Nama Kelas field), not Mapel.
-
-No restarts needed.
+- [x] Step 1: Check current table structure with DESCRIBE kelas (using PHP script)
+- [x] Step 2: Alter table to make id_kelas AUTO_INCREMENT PRIMARY KEY (success)
+- [x] Step 3: Verify structure after alter (auto_increment confirmed)
+- [x] Step 1: Check current table structure with DESCRIBE kelas (using PHP script)
+- [x] Step 2: Alter table to make id_kelas AUTO_INCREMENT PRIMARY KEY (success)
+- [x] Step 3: Verify structure after alter (auto_increment confirmed)
+- [x] Step 4: Test INSERT (success: inserted Test Kelas with id=1)
