@@ -25,7 +25,7 @@ $level = $_SESSION['level'];
                     <div class="card-header"><h3>Jadwal <?= ucfirst($level) ?></h3></div>
                     <div class="card-body">
                         <p>Jadwal untuk <strong><?= $_SESSION['Username'] ?></strong> (<?= strtoupper($level) ?>)</p>
-                        <p>Feature coming soon...</p>
+                        
                     </div>
                 </div>
             </div>

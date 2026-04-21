@@ -9,20 +9,30 @@
 </div>
 
 <?php
+//kode otomatis
+$carikode = mysqli_query($koneksi, "select max(id_kelas) from kelas") or die (mysqli_error($koneksi));
+$datakode = mysqli_fetch_array($carikode);
 
+if ($datakode && $datakode[0]) {
+    $nilaikode = (int)$datakode[0];
+    $kode = $nilaikode + 1;
+} else {
+    $kode = 1;
+}
+$hasilkode = "K-" . str_pad($kode, 3, "0", STR_PAD_LEFT);
+$_SESSION["KODE"] = $hasilkode;
 
 if(isset($_POST['tambah'])){
-
+    $id_kelas = $_POST['id_kelas'];
     $nm_kelas = $_POST['nm_kelas'];
 
-    $insert = mysqli_query($koneksi, "INSERT INTO kelas (nm_kelas) VALUES ('$nm_kelas')");
-    $insert_id = mysqli_insert_id($koneksi);
+    $insert = mysqli_query($koneksi, "INSERT INTO kelas values ('$id_kelas', '$nm_kelas')");
     
     if ($insert) {
         echo '<div class="alert alert-info alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
             <h5><i class="icon fas fa-info"></i> Info </h5>
-            <h4>Berhasil Disimpan (Auto ID: ' . $insert_id . ')</h4></div>';
+            <h4>Berhasil Disimpan</h4></div>';
         echo '<meta http-equiv="refresh" content="1;url=index.php?page=kelas">';
     } else {
         echo '<div class="alert alert-warning alert-dismissible">
@@ -38,6 +48,11 @@ if(isset($_POST['tambah'])){
             <div class="card-body">
                 <div class="card-body p-2">
                     <form method="POST" action="">
+                        <div class="form-group">
+                            <label for="id_kelas">Kode Kelas</label>
+                            <input type="text" name="id_kelas" value="<?= $hasilkode; ?>" placeholder="Id Kelas" class="form-control" readonly>
+                        </div>
+                        
                         <div class="form-group">
                             <label for="nm_kelas">Nama Kelas</label>
                             <input type="text" name="nm_kelas" id="nm_kelas" placeholder="Nama Kelas" class="form-control">
